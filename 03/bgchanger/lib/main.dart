@@ -34,12 +34,15 @@ class _HomePageState extends State<HomePage> {
     Colors.pink,
     Colors.orange,
   ];
-  var a = Colors.white;
+  var a = Colors.white, b = Colors.black;
 
   void bgch() {
     var r = Random().nextInt(c.length);
     setState(() {
       a = c[r];
+      r = Random().nextInt(c.length);
+      b = c[r];
+      for (; b == a; r = Random().nextInt(c.length), b = c[r]);
     });
   }
 
@@ -52,12 +55,17 @@ class _HomePageState extends State<HomePage> {
         onPressed: bgch,
         child: Text(
           'Change Color',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
         ),
         style: TextButton.styleFrom(
-            minimumSize: Size(120, 50),
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-            backgroundColor: Colors.black),
+          minimumSize: Size(100, 50),
+          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+          backgroundColor: b,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
       )),
     );
   }
