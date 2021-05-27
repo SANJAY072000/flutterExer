@@ -66,16 +66,17 @@ class _HomePageState extends State<HomePage> {
   AssetImage getImage(String v) {
     switch (v) {
       case 'empty':
-        return edit;
+        return this.edit;
       case 'cross':
-        return cross;
+        return this.cross;
       case 'circle':
-        return circle;
+        return this.circle;
     }
-    return edit;
+    return this.edit;
   }
 
   void checkWin() {
+    var a1 = this.a1;
     if ((a1[0] != 'empty') && (a1[0] == a1[1]) && (a1[1] == a1[2])) {
       setState(() {
         this.msg = '${this.a1[0]} wins';
@@ -119,7 +120,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tic Tac Toe App'),
+        title: Text(
+          'Tic Tac Toe App',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -142,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                     this.playGame(i);
                   },
                   child: Image(
-                    image: this.getImage(a1[i]),
+                    image: this.getImage(this.a1[i]),
                   ),
                 ),
               ),
@@ -170,7 +174,7 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(20),
             child: Text(
               'Made by Sanjay',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           )
         ],
