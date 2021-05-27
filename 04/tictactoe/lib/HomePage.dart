@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void playGame(int id) {
+  playGame(int id) {
     if (this.a1[id] == 'empty') {
       setState(() {
         if (this.isCross) {
@@ -117,6 +117,64 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tic Tac Toe App'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: GridView.builder(
+              padding: EdgeInsets.all(20),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10),
+              itemCount: 9,
+              itemBuilder: (context, i) => SizedBox(
+                width: 100,
+                height: 100,
+                child: TextButton(
+                  onPressed: () {
+                    this.playGame(i);
+                  },
+                  child: Image(
+                    image: this.getImage(a1[i]),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              this.msg,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              this.resetGame();
+            },
+            style: TextButton.styleFrom(
+                minimumSize: Size(300, 50), backgroundColor: Colors.purple),
+            child: Text(
+              'Reset Game',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              'Made by me',
+              style: TextStyle(fontSize: 18),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
