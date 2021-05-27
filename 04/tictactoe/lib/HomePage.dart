@@ -32,6 +32,89 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void resetGame() {
+    setState(() {
+      this.a1 = [
+        'empty',
+        'empty',
+        'empty',
+        'empty',
+        'empty',
+        'empty',
+        'empty',
+        'empty',
+        'empty'
+      ];
+      this.msg = '';
+    });
+  }
+
+  void playGame(int id) {
+    if (this.a1[id] == 'empty') {
+      setState(() {
+        if (this.isCross) {
+          this.a1[id] = 'cross';
+        } else {
+          this.a1[id] = 'circle';
+        }
+        this.isCross = !this.isCross;
+        this.checkWin();
+      });
+    }
+  }
+
+  AssetImage getImage(String v) {
+    switch (v) {
+      case 'empty':
+        return edit;
+      case 'cross':
+        return cross;
+      case 'circle':
+        return circle;
+    }
+    return edit;
+  }
+
+  void checkWin() {
+    if ((a1[0] != 'empty') && (a1[0] == a1[1]) && (a1[1] == a1[2])) {
+      setState(() {
+        this.msg = '${this.a1[0]} wins';
+      });
+    } else if ((a1[3] != 'empty') && (a1[3] == a1[4]) && (a1[4] == a1[5])) {
+      setState(() {
+        this.msg = '${this.a1[3]} wins';
+      });
+    } else if ((a1[6] != 'empty') && (a1[6] == a1[7]) && (a1[7] == a1[8])) {
+      setState(() {
+        this.msg = '${this.a1[6]} wins';
+      });
+    } else if ((a1[0] != 'empty') && (a1[0] == a1[3]) && (a1[3] == a1[6])) {
+      setState(() {
+        this.msg = '${this.a1[0]} wins';
+      });
+    } else if ((a1[1] != 'empty') && (a1[1] == a1[4]) && (a1[4] == a1[77])) {
+      setState(() {
+        this.msg = '${this.a1[1]} wins';
+      });
+    } else if ((a1[2] != 'empty') && (a1[2] == a1[5]) && (a1[5] == a1[8])) {
+      setState(() {
+        this.msg = '${this.a1[2]} wins';
+      });
+    } else if ((a1[0] != 'empty') && (a1[0] == a1[4]) && (a1[4] == a1[8])) {
+      setState(() {
+        this.msg = '${this.a1[0]} wins';
+      });
+    } else if ((a1[2] != 'empty') && (a1[2] == a1[4]) && (a1[4] == a1[6])) {
+      setState(() {
+        this.msg = '${this.a1[2]} wins';
+      });
+    } else if (!a1.contains('empty')) {
+      setState(() {
+        this.msg = 'Game Draw';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container();
