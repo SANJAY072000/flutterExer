@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             padding: EdgeInsets.all(20),
             child: Text(
-              'Made by me',
+              'Made by Sanjay',
               style: TextStyle(fontSize: 18),
             ),
           )
