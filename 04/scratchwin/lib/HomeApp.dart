@@ -68,6 +68,73 @@ class _HomeAppState extends State<HomeApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+          title: Text(
+        'Scratch Win App',
+        style: TextStyle(color: Colors.white),
+      )),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Expanded(
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    childAspectRatio: 1,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
+                itemCount: 25,
+                itemBuilder: (context, i) => SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: TextButton(
+                        onPressed: () {
+                          this.playGame(i);
+                        },
+                        child: Image(
+                          image: this.getImg(i),
+                        ),
+                      ),
+                    )),
+          ),
+          Container(
+            margin: EdgeInsets.all(15),
+            child: TextButton(
+              onPressed: () {
+                this.showAll();
+              },
+              child: Text(
+                'Show All',
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              style: TextButton.styleFrom(
+                  backgroundColor: Colors.pink,
+                  padding: EdgeInsets.all(20),
+                  minimumSize: Size(100, 50)),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(15),
+            child: TextButton(
+              onPressed: () {
+                this.reset();
+              },
+              child: Text(
+                'Reset Game',
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+              style: TextButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  padding: EdgeInsets.all(20),
+                  minimumSize: Size(100, 50)),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
