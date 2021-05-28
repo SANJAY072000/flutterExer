@@ -29,6 +29,36 @@ class _HomeAppState extends State<HomeApp> {
 
   int genNum() => Random().nextInt(25);
 
+  AssetImage getImg(id) {
+    String s = this.a1[id];
+    switch (s) {
+      case 'lucky':
+        return this.rupee;
+      case 'unlucky':
+        return this.sadFace;
+    }
+    return this.circle;
+  }
+
+  void playGame(id) {
+    if (this.luck == id) {
+      setState(() {
+        this.a1[id] = 'lucky';
+      });
+    } else {
+      setState(() {
+        this.a1[id] = 'unlucky';
+      });
+    }
+  }
+
+  void showAll() {
+    setState(() {
+      this.a1 = List.filled(25, 'unlucky');
+      this.a1[this.luck] = 'lucky';
+    });
+  }
+
   void reset() {
     setState(() {
       this.a1 = List.filled(25, 'empty');
