@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   play(uri) {
-    ap.play(uri);
+    this.ap.play(uri);
   }
 
   @override
